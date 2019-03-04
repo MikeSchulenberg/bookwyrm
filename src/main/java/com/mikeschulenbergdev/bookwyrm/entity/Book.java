@@ -1,10 +1,17 @@
 package com.mikeschulenbergdev.bookwyrm.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +26,6 @@ public class Book {
 	@Column(name="title")
 	private String title;
 	
-	@Column(name="author")
-	private String author;
-	
 	@Column(name="genre")
 	private String genre;
 	
@@ -31,13 +35,22 @@ public class Book {
 	@Column(name="series_number")
 	private int seriesNumber;
 	
+	@ManyToMany(fetch=FetchType.LAZY,
+				cascade= {CascadeType.DETACH, CascadeType.MERGE,
+						  CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(
+			name="book_author",
+			joinColumns=@JoinColumn(name="book_id"),
+			inverseJoinColumns=@JoinColumn(name="author_id")
+			)
+	private List<Author> author;
+	
 	public Book() {
 		
 	}
 
-	public Book(String title, String author, String genre, String seriesName, int seriesNumber) {
+	public Book(String title, String genre, String seriesName, int seriesNumber) {
 		this.title = title;
-		this.author = author;
 		this.genre = genre;
 		this.seriesName = seriesName;
 		this.seriesNumber = seriesNumber;
@@ -57,14 +70,6 @@ public class Book {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public String getGenre() {
@@ -91,11 +96,19 @@ public class Book {
 		this.seriesNumber = seriesNumber;
 	}
 
+	public List<Author> getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(List<Author> author) {
+		this.author = author;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author 
-				+ ", genre=" + genre + ", seriesName=" + seriesName 
-				+ ", seriesNumber=" + seriesNumber + "]";
+		return "Book [id=" + id + ", title=" + title + ", genre=" + genre 
+				+ ", seriesName=" + seriesName + ", seriesNumber=" 
+				+ seriesNumber + ", author=" + author + "]";
 	}
 	
 }
