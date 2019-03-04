@@ -30,13 +30,13 @@ public class Author {
 	private String lastName;
 	
 	@ManyToMany(fetch=FetchType.LAZY,
-			cascade= {CascadeType.DETACH, CascadeType.MERGE,
-					  CascadeType.PERSIST, CascadeType.REFRESH})
-@JoinTable(
-		name="book_author",
-		joinColumns=@JoinColumn(name="author_id"),
-		inverseJoinColumns=@JoinColumn(name="book_id")
-		)
+			    cascade= {CascadeType.DETACH, CascadeType.MERGE,
+			    		  CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(
+			name="book_author",
+			joinColumns=@JoinColumn(name="author_id"),
+			inverseJoinColumns=@JoinColumn(name="book_id")
+			)
 	private List<Book> books;
 	
 	public Author() {
