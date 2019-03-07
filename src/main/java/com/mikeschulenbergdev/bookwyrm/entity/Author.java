@@ -56,15 +56,15 @@ public class Author {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
-			    cascade= {CascadeType.DETACH, CascadeType.MERGE,
-			    		  CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinTable(
-			name="book_author",
-			joinColumns=@JoinColumn(name="author_id"),
-			inverseJoinColumns=@JoinColumn(name="book_id")
-			)
-	private List<Book> books;
+//	@ManyToMany(fetch=FetchType.LAZY,
+//			    cascade= {CascadeType.DETACH, CascadeType.MERGE,
+//			    		  CascadeType.PERSIST, CascadeType.REFRESH})
+//	@JoinTable(
+//			name="book_author",
+//			joinColumns=@JoinColumn(name="author_id"),
+//			inverseJoinColumns=@JoinColumn(name="book_id")
+//			)
+//	private List<Book> books;
 	
 	public Author() {
 		
@@ -114,18 +114,25 @@ public class Author {
 		this.lastName = lastName;
 	}
 
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
-
+	// TODO: get List<Book> working and update toString()
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" 
-				+ middleName + ", lastName=" + lastName + ", books=" + books + "]";
+		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
+				+ "]";
 	}
+
+//	public List<Book> getBooks() {
+//		return books;
+//	}
+//
+//	public void setBooks(List<Book> books) {
+//		this.books = books;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" 
+//				+ middleName + ", lastName=" + lastName + ", books=" + books + "]";
+//	}
 	
 }
