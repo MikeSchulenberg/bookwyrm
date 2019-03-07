@@ -20,6 +20,14 @@ package com.mikeschulenbergdev.bookwyrm;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * This web application allows users to create shared entries for books
+ * and authors, add books to private bookshelves, and write/edit reviews.
+ * 
+ * @author Mike Schulenberg
+ * @version 0.0.1-SNAPSHOT
+ *
+ */
 @SpringBootApplication
 public class BookwyrmApplication {
 

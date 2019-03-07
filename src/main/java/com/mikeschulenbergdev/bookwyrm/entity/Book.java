@@ -31,6 +31,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * This class represents a single book.
+ * 
+ * @author Mike Schulenberg
+ * @version 0.0.1-SNAPSHOT
+ *
+ */
 @Entity
 @Table(name="book")
 public class Book {
@@ -73,10 +80,17 @@ public class Book {
 		this.seriesNumber = seriesNumber;
 	}
 
+	/**
+	 * @return The primary key used to identify the Book in the database.
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id The primary key used to identify the Book in the database.
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}

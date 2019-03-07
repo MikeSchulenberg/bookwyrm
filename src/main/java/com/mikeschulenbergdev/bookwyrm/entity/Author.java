@@ -31,6 +31,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * This class represents an author of one or more books.
+ * 
+ * @author Mike Schulenberg
+ * @version 0.0.1-SNAPSHOT
+ *
+ */
 @Entity
 @Table(name="author")
 public class Author {
@@ -69,10 +76,16 @@ public class Author {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * @return The primary key used to identify the Author in the database.
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id The primary key used to identify the Author in the database.
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}

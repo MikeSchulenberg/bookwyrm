@@ -21,14 +21,35 @@ import java.util.List;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Author;
 
+/**
+ * Interface for a Data Access Object to handle database transactions
+ * for the Author class.
+ * 
+ * @author Mike Schulenberg
+ * @version 0.0.1-SNAPSHOT
+ *
+ */
 public interface AuthorDAO {
 
+	/**
+	 * @return A list of objects representing all Authors in the database.
+	 */	
 	public List<Author> findAll();
 	
+	/**
+	 * @param id The primary key of an Author to search for in the database.
+	 * @return An object representing the Author matching the id.
+	 */	
 	public Author findByID(int id);
 	
+	/**
+	 * @param author An object representing the Author to be saved in the database.
+	 */	
 	public void save(Author author);
 	
+	/**
+	 * @param id The primary key of the Author to delete from the database.
+	 */	
 	public void deleteByID(int id);
 	
 }

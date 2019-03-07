@@ -24,9 +24,19 @@ import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
+/**
+ * Implementation for a Data Access Object to handle database transactions
+ * for the Book class.
+ * 
+ * @author Mike Schulenberg
+ * @version 0.0.1-SNAPSHOT
+ *
+ */
+@Repository
 public class BookDAOImpl implements BookDAO {
 
 	private EntityManager entityManager;
@@ -36,6 +46,9 @@ public class BookDAOImpl implements BookDAO {
 		this.entityManager = entityManager;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Book> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -46,6 +59,9 @@ public class BookDAOImpl implements BookDAO {
 		return books;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Book findByID(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -55,6 +71,9 @@ public class BookDAOImpl implements BookDAO {
 		return book;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void save(Book book) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -62,6 +81,9 @@ public class BookDAOImpl implements BookDAO {
 		currentSession.saveOrUpdate(book);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void deleteByID(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);

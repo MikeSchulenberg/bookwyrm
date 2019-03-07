@@ -21,14 +21,35 @@ import java.util.List;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
+/**
+ * Interface for a Data Access Object to handle database transactions
+ * for the Book class.
+ * 
+ * @author Mike Schulenberg
+ * @version 0.0.1-SNAPSHOT
+ *
+ */
 public interface BookDAO {
 
+	/**
+	 * @return A list of objects representing all Books in the database.
+	 */	
 	public List<Book> findAll();
 	
+	/**
+	 * @param id The primary key of a Book to search for in the database.
+	 * @return An object representing the Book matching the id.
+	 */	
 	public Book findByID(int id);
 	
+	/**
+	 * @param book An object representing the Book to be saved in the database.
+	 */	
 	public void save(Book book);
 	
+	/**
+	 * @param id The primary key of the Book to delete from the database.
+	 */	
 	public void deleteByID(int id);
 	
 }
