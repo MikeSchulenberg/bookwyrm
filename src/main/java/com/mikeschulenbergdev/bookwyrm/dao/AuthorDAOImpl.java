@@ -89,7 +89,7 @@ public class AuthorDAOImpl implements AuthorDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		Query<?> query = 
-				currentSession.createQuery("DELETE FROM author WHERE id:=authorID");
+				currentSession.createQuery("delete from Author where id=:authorID");
 		query.setParameter("authorID", id);
 		
 		query.executeUpdate();

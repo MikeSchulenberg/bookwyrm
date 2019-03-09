@@ -89,7 +89,7 @@ public class BookDAOImpl implements BookDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		Query<?> query =
-				currentSession.createQuery("DELETE FROM book WHERE id:=bookID");
+				currentSession.createQuery("delete from book where id=:bookID");
 		query.setParameter("bookID", id);
 		
 		query.executeUpdate();
