@@ -50,11 +50,19 @@ public class BookRestController {
 		this.bookService = bookService;
 	}
 	
+	/**
+	 * @return A list of objects representing all Books in the database.
+	 */	
 	@GetMapping("/books")
 	public List<Book> findAll() {	
 		return bookService.findAll();
 	}
 	
+	/**
+	 * @param bookID The primary key of a Book to search for in the database.
+	 * @return An object representing the Book with a primary key that matches
+	 * the `bookID`.
+	 */
 	@GetMapping("/books/{bookID}")
 	public Book getBook(@PathVariable int bookID) {
 		Book book = bookService.findByID(bookID);
@@ -66,6 +74,10 @@ public class BookRestController {
 		return book;
 	}
 	
+	/**
+	 * @param book An new object representing the Book to be added to the database.
+	 * @return The Book just added to the database.
+	 */
 	@PostMapping("/books")
 	public Book addBook(@RequestBody Book book) {
 		/* Force the database to save as a new book, rather than updating
@@ -76,6 +88,10 @@ public class BookRestController {
 		return book;
 	}
 	
+	/**
+	 * @param book An object representing the Book to be updated in the database.
+	 * @return The Book just updated in the database.
+	 */
 	@PutMapping("/books")
 	public Book updateBook(@RequestBody Book book) {
 		bookService.save(book);
@@ -83,6 +99,10 @@ public class BookRestController {
 		return book;
 	}
 	
+	/**
+	 * @param bookID The primary key of a Book to delete from the database.
+	 * @return A String identifying the Book just deleted from the database
+	 */
 	@DeleteMapping("/books/{bookID}")
 	public String deleteBook(@PathVariable int bookID) {
 		Book book = bookService.findByID(bookID);
