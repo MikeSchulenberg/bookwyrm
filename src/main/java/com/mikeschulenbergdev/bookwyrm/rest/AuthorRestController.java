@@ -50,11 +50,19 @@ public class AuthorRestController {
 		this.authorService = authorService;
 	}
 	
+	/**
+	 * @return A list of objects representing all Authors in the database.
+	 */	
 	@GetMapping("/authors")
 	public List<Author> findAll() {
 		return authorService.findAll();
 	}
 	
+	/**
+	 * @param authorID The primary key of an Author to search for in the database.
+	 * @return An object representing the Author with a primary key that matches
+	 * the `authorID`.
+	 */
 	@GetMapping("/authors/{authorID}")
 	public Author getAuthor(@PathVariable int authorID) {
 		Author author = authorService.findByID(authorID);
@@ -66,6 +74,10 @@ public class AuthorRestController {
 		return author;
 	}
 	
+	/**
+	 * @param author An new object representing the Author to be added to the database.
+	 * @return The Author just added to the database.
+	 */
 	@PostMapping("/authors")
 	public Author addAuthor(@RequestBody Author author) {
 		/* Force the database to save as a new author, rather than updating
@@ -76,6 +88,10 @@ public class AuthorRestController {
 		return author;
 	}
 	
+	/**
+	 * @param author An object representing the Author to be updated in the database.
+	 * @return The Author just updated in the database.
+	 */
 	@PutMapping("/authors")
 	public Author updateAuthor(@RequestBody Author author) {
 		authorService.save(author);
@@ -83,6 +99,10 @@ public class AuthorRestController {
 		return author;
 	}
 	
+	/**
+	 * @param authorID The primary key of an Author to delete from the database.
+	 * @return A String identifying the Author just deleted from the database
+	 */
 	@DeleteMapping("/authors/{authorID}")
 	public String deleteAuthor(@PathVariable int authorID) {
 		Author author = authorService.findByID(authorID);
