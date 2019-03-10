@@ -38,7 +38,7 @@ public interface AuthorDAO {
 	
 	/**
 	 * @param id The primary key of an Author to search for in the database.
-	 * @return An object representing the Author matching the id.
+	 * @return An object representing the Author matching the `id`.
 	 */	
 	public Author findByID(int id);
 	

@@ -38,7 +38,7 @@ public interface BookDAO {
 	
 	/**
 	 * @param id The primary key of a Book to search for in the database.
-	 * @return An object representing the Book matching the id.
+	 * @return An object representing the Book matching the `id`.
 	 */	
 	public Book findByID(int id);
 	
