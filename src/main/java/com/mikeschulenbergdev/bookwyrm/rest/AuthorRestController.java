@@ -93,7 +93,7 @@ public class AuthorRestController {
 		
 		authorService.deleteByID(authorID);
 		
-		return null;
+		return "Deleted Author ID: " + authorID;
 	}
 	
 }
