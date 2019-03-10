@@ -57,7 +57,7 @@ public class Book {
 	private String seriesName;
 	
 	@Column(name="series_number")
-	private int seriesNumber;
+	private Integer seriesNumber;
 	
 //	@ManyToMany(fetch=FetchType.LAZY,
 //				cascade= {CascadeType.DETACH, CascadeType.MERGE,
@@ -119,11 +119,11 @@ public class Book {
 		this.seriesName = seriesName;
 	}
 
-	public int getSeriesNumber() {
+	public Integer getSeriesNumber() {
 		return seriesNumber;
 	}
 
-	public void setSeriesNumber(int seriesNumber) {
+	public void setSeriesNumber(Integer seriesNumber) {
 		this.seriesNumber = seriesNumber;
 	}
 
