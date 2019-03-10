@@ -46,9 +46,6 @@ public class AuthorDAOImpl implements AuthorDAO {
 		this.entityManager = entityManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public List<Author> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -59,9 +56,6 @@ public class AuthorDAOImpl implements AuthorDAO {
 		return authors;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Author findByID(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -71,9 +65,6 @@ public class AuthorDAOImpl implements AuthorDAO {
 		return author;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void save(Author author) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -81,9 +72,6 @@ public class AuthorDAOImpl implements AuthorDAO {
 		currentSession.saveOrUpdate(author);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void deleteByID(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);

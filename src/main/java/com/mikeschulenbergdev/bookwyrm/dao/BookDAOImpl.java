@@ -46,9 +46,6 @@ public class BookDAOImpl implements BookDAO {
 		this.entityManager = entityManager;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public List<Book> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -59,9 +56,6 @@ public class BookDAOImpl implements BookDAO {
 		return books;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Book findByID(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -71,9 +65,6 @@ public class BookDAOImpl implements BookDAO {
 		return book;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void save(Book book) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -81,9 +72,6 @@ public class BookDAOImpl implements BookDAO {
 		currentSession.saveOrUpdate(book);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void deleteByID(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
