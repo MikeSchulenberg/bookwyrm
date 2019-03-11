@@ -31,12 +31,37 @@ import com.mikeschulenbergdev.bookwyrm.entity.Author;
  */
 public interface AuthorDAO {
 
+	/**
+	 * This function is called from the application's Service layer.
+	 * @see com.mikeschulenbergdev.bookwyrm.service.AuthorService#findAll()
+	 * 
+	 * @return As per AuthorService.findAll()
+	 */
 	public List<Author> findAll();
 	
+	/** 
+	 * This function is called from the application's Service layer.
+	 * @see com.mikeschulenbergdev.bookwyrm.service.AuthorService#findByID(int)
+	 * 
+	 * @param id As per AuthorService.findByID(int)
+	 * @return As per AuthorService.findByID(int)
+	 */
 	public Author findByID(int id);
 
+	/**
+	 * This function is called from the application's Service layer.
+	 * @see com.mikeschulenbergdev.bookwyrm.service.AuthorService#save(Author)
+	 * 
+	 * @param author As per AuthorService.save(Author)
+	 */
 	public void save(Author author);
 	
+	/**
+	 * This function is called from the application's Service layer.
+	 * @see com.mikeschulenbergdev.bookwyrm.service.AuthorService#deleteByID(int)
+	 * 
+	 * @param id As per AuthorService.deleteByID(int)
+	 */
 	public void deleteByID(int id);
 	
 }
