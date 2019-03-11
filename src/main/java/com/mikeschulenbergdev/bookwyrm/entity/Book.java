@@ -31,6 +31,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * This class represents a single book.
  * 
@@ -59,15 +61,16 @@ public class Book {
 	@Column(name="series_number")
 	private Integer seriesNumber;
 	
-//	@ManyToMany(fetch=FetchType.LAZY,
-//				cascade= {CascadeType.DETACH, CascadeType.MERGE,
-//						  CascadeType.PERSIST, CascadeType.REFRESH})
-//	@JoinTable(
-//			name="book_author",
-//			joinColumns=@JoinColumn(name="book_id"),
-//			inverseJoinColumns=@JoinColumn(name="author_id")
-//			)
-//	private List<Author> author;
+	@ManyToMany(fetch=FetchType.LAZY,
+				cascade= {CascadeType.DETACH, CascadeType.MERGE,
+						  CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(
+			name="book_author",
+			joinColumns=@JoinColumn(name="book_id"),
+			inverseJoinColumns=@JoinColumn(name="author_id")
+			)
+	@JsonIgnoreProperties("books")
+	private List<Author> author;
 	
 	public Book() {
 		
@@ -128,25 +131,25 @@ public class Book {
 	}
 
 	// TODO: get List<Author> working and update toString()
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", genre=" + genre + ", seriesName=" + seriesName
-				+ ", seriesNumber=" + seriesNumber + "]";
-	}
-	
-//	public List<Author> getAuthor() {
-//		return author;
-//	}
-//
-//	public void setAuthor(List<Author> author) {
-//		this.author = author;
-//	}
-//
 //	@Override
 //	public String toString() {
-//		return "Book [id=" + id + ", title=" + title + ", genre=" + genre 
-//				+ ", seriesName=" + seriesName + ", seriesNumber=" 
-//				+ seriesNumber + ", author=" + author + "]";
+//		return "Book [id=" + id + ", title=" + title + ", genre=" + genre + ", seriesName=" + seriesName
+//				+ ", seriesNumber=" + seriesNumber + "]";
 //	}
+	
+	public List<Author> getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(List<Author> author) {
+		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", genre=" + genre 
+				+ ", seriesName=" + seriesName + ", seriesNumber=" 
+				+ seriesNumber + ", author=" + author + "]";
+	}
 	
 }
