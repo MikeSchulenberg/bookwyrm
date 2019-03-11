@@ -117,13 +117,6 @@ public class Author {
 		this.lastName = lastName;
 	}
 
-	// TODO: get List<Book> working and update toString()
-//	@Override
-//	public String toString() {
-//		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-//				+ "]";
-//	}
-
 	public List<Book> getBooks() {
 		return books;
 	}
@@ -134,8 +127,8 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" 
-				+ middleName + ", lastName=" + lastName + ", books=" + books + "]";
+		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" + 
+				middleName + ", lastName=" + lastName + "]";
 	}
-	
+
 }

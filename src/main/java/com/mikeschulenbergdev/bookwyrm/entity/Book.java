@@ -129,13 +129,6 @@ public class Book {
 	public void setSeriesNumber(Integer seriesNumber) {
 		this.seriesNumber = seriesNumber;
 	}
-
-	// TODO: get List<Author> working and update toString()
-//	@Override
-//	public String toString() {
-//		return "Book [id=" + id + ", title=" + title + ", genre=" + genre + ", seriesName=" + seriesName
-//				+ ", seriesNumber=" + seriesNumber + "]";
-//	}
 	
 	public List<Author> getAuthor() {
 		return author;
@@ -147,9 +140,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", genre=" + genre 
-				+ ", seriesName=" + seriesName + ", seriesNumber=" 
-				+ seriesNumber + ", author=" + author + "]";
+		return "Book [id=" + id + ", title=" + title + ", genre=" + genre + 
+				", seriesName=" + seriesName + ", seriesNumber=" + seriesNumber + "]";
 	}
 	
 }
