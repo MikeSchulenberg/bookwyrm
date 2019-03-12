@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.mikeschulenbergdev.bookwyrm.rest;
+package com.mikeschulenbergdev.bookwyrm.controller.rest;
 
 import java.util.List;
 
