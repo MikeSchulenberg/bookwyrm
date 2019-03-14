@@ -32,17 +32,17 @@ public class EntryController {
 
 	@RequestMapping("/")
 	public String showWelcomePage() {
-		return "forward:/html/welcome.html";
+		return "/entry/welcome.html";
 	}
 	
 	@RequestMapping("/register")
 	public String showRegistrationPage() {
-		return "forward:/html/register.html";
+		return "/entry/register.html";
 	}
 	
 	@RequestMapping("/login")
 	public String showLoginPage() {
-		return "forward:/html/login.html";
+		return "/entry/login.html";
 	}
 	
 	@RequestMapping("/index")
