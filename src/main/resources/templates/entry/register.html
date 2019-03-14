@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<title>Bookwyrm</title>
+<head th:replace="fragments/header :: header">
+	
 </head>
 
 <body>
-	<h1>Registration Page</h1>
+	<div class="container">
+		<h1>Registration Page</h1>
 	
-	<hr>
-	
-	<p>
-		<a href="/home">Registration Successful</a>
-	</p>
+		<hr>
+		
+		<p>
+			<a href="/home">Registration Successful</a>
+		</p>
+	</div>
 </body>
 </html>
