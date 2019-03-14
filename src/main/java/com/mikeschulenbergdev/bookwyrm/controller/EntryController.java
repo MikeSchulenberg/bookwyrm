@@ -45,9 +45,9 @@ public class EntryController {
 		return "/entry/login.html";
 	}
 	
-	@RequestMapping("/index")
+	@RequestMapping("/home")
 	public String showIndexPage() {
-		return "/index.html";
+		return "/home.html";
 	}
 	
 }
