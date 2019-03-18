@@ -15,11 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.mikeschulenbergdev.bookwyrm.controller.rest;
+package com.mikeschulenbergdev.bookwyrm.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,52 +29,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.service.AuthorService;
 
 /**
- * REST controller to handle Author objects.
+ * Controller to handle Author objects.
  * 
  * @author Mike Schulenberg
  * @version 0.0.1-SNAPSHOT
  *
  */
-@RestController
-@RequestMapping("/api")
-public class AuthorRestController {
+@Controller
+@RequestMapping("/authors")
+public class AuthorController {
 
 	private AuthorService authorService;
 
 	@Autowired
-	public AuthorRestController(AuthorService authorService) {
+	public AuthorController(AuthorService authorService) {
 		this.authorService = authorService;
 	}
 	
 	/**
 	 * @return A list of objects representing all Authors in the database.
 	 */	
-	@GetMapping("/authors")
-	public List<Author> findAll() {
-		return authorService.findAll();
-	}
-	
-	/**
-	 * @param authorID The primary key of an Author to search for in the database.
-	 * @return An object representing the Author with a primary key that matches
-	 * the `authorID`.
-	 */
-	@GetMapping("/authors/{authorID}")
-	public Author getAuthor(@PathVariable int authorID) {
-		Author author = authorService.findByID(authorID);
+	@GetMapping("/")
+	public String findAll(Model model) {
+		List<Author> authors = authorService.findAll();
 		
-		if (author == null) {
-			throw new RuntimeException("Author ID not found: " + authorID);
-		}
+		model.addAttribute("authors", authors);
 		
-		return author;
+		return "/authors/list-authors";
 	}
+
+	// TODO: delete code if unneeded
+//	/**
+//	 * @param authorID The primary key of an Author to search for in the database.
+//	 * @return An object representing the Author with a primary key that matches
+//	 * the `authorID`.
+//	 */
+//	@GetMapping("/authors/{authorID}")
+//	public Author getAuthor(@PathVariable int authorID) {
+//		Author author = authorService.findByID(authorID);
+//		
+//		if (author == null) {
+//			throw new RuntimeException("Author ID not found: " + authorID);
+//		}
+//		
+//		return author;
+//	}
 	
 	/**
 	 * @param author An new object representing the Author to be added to the database.

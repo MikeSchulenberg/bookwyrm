@@ -15,11 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.mikeschulenbergdev.bookwyrm.controller.rest;
+package com.mikeschulenbergdev.bookwyrm.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,52 +29,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 import com.mikeschulenbergdev.bookwyrm.service.BookService;
 
 /**
- * REST controller to handle Book objects.
+ * Controller to handle Book objects.
  * 
  * @author Mike Schulenberg
  * @version 0.0.1-SNAPSHOT
  *
  */
-@RestController
-@RequestMapping("/api")
-public class BookRestController {
+@Controller
+@RequestMapping("/books")
+public class BookController {
 
 	private BookService bookService;
 
 	@Autowired
-	public BookRestController(BookService bookService) {
+	public BookController(BookService bookService) {
 		this.bookService = bookService;
 	}
 	
 	/**
 	 * @return A list of objects representing all Books in the database.
 	 */	
-	@GetMapping("/books")
-	public List<Book> findAll() {	
-		return bookService.findAll();
-	}
-	
-	/**
-	 * @param bookID The primary key of a Book to search for in the database.
-	 * @return An object representing the Book with a primary key that matches
-	 * the `bookID`.
-	 */
-	@GetMapping("/books/{bookID}")
-	public Book getBook(@PathVariable int bookID) {
-		Book book = bookService.findByID(bookID);
+	@GetMapping("/")
+	public String findAll(Model model) {	
+		List<Book> books = bookService.findAll();
 		
-		if (book == null) {
-			throw new RuntimeException("Book ID not found: " + bookID);
-		}
+		model.addAttribute("books", books);
 		
-		return book;
+		return "/books/list-books";
 	}
+
+	// TODO: delete code if unneeded
+//	/**
+//	 * @param bookID The primary key of a Book to search for in the database.
+//	 * @return An object representing the Book with a primary key that matches
+//	 * the `bookID`.
+//	 */
+//	@GetMapping("/books/{bookID}")
+//	public Book getBook(@PathVariable int bookID) {
+//		Book book = bookService.findByID(bookID);
+//		
+//		if (book == null) {
+//			throw new RuntimeException("Book ID not found: " + bookID);
+//		}
+//		
+//		return book;
+//	}
 	
 	/**
 	 * @param book An new object representing the Book to be added to the database.
