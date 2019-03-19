@@ -54,7 +54,7 @@ public class AuthorController {
 	/**
 	 * @return A list of objects representing all Authors in the database.
 	 */	
-	@GetMapping("/")
+	@GetMapping("/all")
 	public String findAll(Model model) {
 		List<Author> authors = authorService.findAll();
 		
@@ -80,6 +80,7 @@ public class AuthorController {
 //		return author;
 //	}
 	
+	// TODO: rework method for MVC controller
 	/**
 	 * @param author An new object representing the Author to be added to the database.
 	 * @return The Author just added to the database.
@@ -94,6 +95,7 @@ public class AuthorController {
 		return author;
 	}
 	
+	// TODO: rework method for MVC controller
 	/**
 	 * @param author An object representing the Author to be updated in the database.
 	 * @return The Author just updated in the database.
@@ -105,6 +107,7 @@ public class AuthorController {
 		return author;
 	}
 	
+	// TODO: rework method for MVC controller
 	/**
 	 * @param authorID The primary key of an Author to delete from the database.
 	 * @return A String identifying the Author just deleted from the database

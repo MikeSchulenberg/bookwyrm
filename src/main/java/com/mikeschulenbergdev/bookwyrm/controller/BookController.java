@@ -54,7 +54,7 @@ public class BookController {
 	/**
 	 * @return A list of objects representing all Books in the database.
 	 */	
-	@GetMapping("/")
+	@GetMapping("/all")
 	public String findAll(Model model) {	
 		List<Book> books = bookService.findAll();
 		
@@ -80,6 +80,7 @@ public class BookController {
 //		return book;
 //	}
 	
+	// TODO: rework method for MVC controller
 	/**
 	 * @param book An new object representing the Book to be added to the database.
 	 * @return The Book just added to the database.
@@ -94,6 +95,7 @@ public class BookController {
 		return book;
 	}
 	
+	// TODO: rework method for MVC controller
 	/**
 	 * @param book An object representing the Book to be updated in the database.
 	 * @return The Book just updated in the database.
@@ -105,6 +107,7 @@ public class BookController {
 		return book;
 	}
 	
+	// TODO: rework method for MVC controller
 	/**
 	 * @param bookID The primary key of a Book to delete from the database.
 	 * @return A String identifying the Book just deleted from the database
