@@ -60,7 +60,7 @@ public class BookController {
 		
 		model.addAttribute("books", books);
 		
-		return "/books/list-books";
+		return "/books/all-books";
 	}
 
 	// TODO: delete code if unneeded

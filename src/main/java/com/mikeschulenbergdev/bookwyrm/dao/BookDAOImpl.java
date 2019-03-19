@@ -50,7 +50,7 @@ public class BookDAOImpl implements BookDAO {
 	public List<Book> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
-		Query<Book> query = currentSession.createQuery("from Book", Book.class);
+		Query<Book> query = currentSession.createQuery("from Book order by title", Book.class);
 		List<Book> books = query.getResultList();
 
 		return books;

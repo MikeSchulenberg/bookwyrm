@@ -50,7 +50,7 @@ public class AuthorDAOImpl implements AuthorDAO {
 	public List<Author> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
-		Query<Author> query = currentSession.createQuery("from Author", Author.class);	
+		Query<Author> query = currentSession.createQuery("from Author order by lastName", Author.class);	
 		List<Author> authors = query.getResultList();
 		
 		return authors;

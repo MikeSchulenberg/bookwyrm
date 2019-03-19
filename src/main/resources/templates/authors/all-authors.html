@@ -10,6 +10,15 @@
 	
 	<div class="container main">
 		<h1>Authors</h1>
+		
+		<div th:each="currentAuthor : ${authors}">
+			<div>
+				<a href="#">
+					<span th:text="${currentAuthor.lastName + ', ' + currentAuthor.firstName}"></span>
+					<span th:text="${currentAuthor?.middleName}"></span>
+				</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

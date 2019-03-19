@@ -60,7 +60,7 @@ public class AuthorController {
 		
 		model.addAttribute("authors", authors);
 		
-		return "/authors/list-authors";
+		return "/authors/all-authors";
 	}
 
 	// TODO: delete code if unneeded

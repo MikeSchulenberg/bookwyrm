@@ -10,6 +10,14 @@
 	
 	<div class="container main">
 		<h1>Books</h1>
+		
+		<div th:each="currentBook : ${books}">
+			<div>
+				<a href="#">
+					<span th:text="${currentBook.title}"></span>
+				</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
