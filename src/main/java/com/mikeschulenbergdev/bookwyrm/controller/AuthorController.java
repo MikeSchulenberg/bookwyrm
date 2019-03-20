@@ -51,6 +51,7 @@ public class AuthorController {
 		this.authorService = authorService;
 	}
 	
+	// TODO: update @return comment
 	/**
 	 * @return A list of objects representing all Authors in the database.
 	 */	
@@ -63,22 +64,20 @@ public class AuthorController {
 		return "/authors/all-authors";
 	}
 
-	// TODO: delete code if unneeded
-//	/**
-//	 * @param authorID The primary key of an Author to search for in the database.
-//	 * @return An object representing the Author with a primary key that matches
-//	 * the `authorID`.
-//	 */
-//	@GetMapping("/authors/{authorID}")
-//	public Author getAuthor(@PathVariable int authorID) {
-//		Author author = authorService.findByID(authorID);
-//		
-//		if (author == null) {
-//			throw new RuntimeException("Author ID not found: " + authorID);
-//		}
-//		
-//		return author;
-//	}
+	// TODO: update @return comment
+	/**
+	 * @param authorID The primary key of an Author to search for in the database.
+	 * @return An object representing the Author with a primary key that matches
+	 * the `authorID`.
+	 */
+	@GetMapping("/{authorID}")
+	public String getAuthor(@PathVariable int authorID, Model model) {
+		Author author = authorService.findByID(authorID);
+		
+		model.addAttribute("author", author);
+		
+		return "/authors/author-detail";
+	}
 	
 	// TODO: rework method for MVC controller
 	/**

@@ -13,7 +13,7 @@
 		
 		<div th:each="author : ${authors}">
 			<div>
-				<a href="#">
+				<a th:href="@{'/authors/' + ${author.id}}">
 					<span th:text="${author.lastName + ', ' + author.firstName}"></span>
 					<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
 				</a>
