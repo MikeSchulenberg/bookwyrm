@@ -20,7 +20,7 @@
 						</a>
 						
 						<div th:each="author : ${book.author}">
-							<a href="#">
+							<a th:href="@{'/authors/' + ${author.id}}">
 								<span th:text="${author.firstName}"></span>
 								<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
 								<span th:text="${author.lastName}"></span>
