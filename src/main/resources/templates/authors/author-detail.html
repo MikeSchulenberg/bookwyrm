@@ -14,6 +14,20 @@
 			<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
 			<span th:text="${author.lastName}"></span>
 		</h1>
+		
+		<br>
+		
+		<h3>Books</h3>
+		
+		<div class="row">
+			<div th:each="book : ${author.books}" class="col-md-3">
+				<div>
+					<a href="#">
+						<span th:text="${book.title}"></span>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

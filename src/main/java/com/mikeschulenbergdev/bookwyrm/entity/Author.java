@@ -29,6 +29,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -66,6 +67,7 @@ public class Author {
 			joinColumns=@JoinColumn(name="author_id"),
 			inverseJoinColumns=@JoinColumn(name="book_id")
 			)
+	@OrderBy("title")
 	@JsonIgnoreProperties("author")
 	private List<Book> books;
 	
