@@ -15,7 +15,7 @@
 			<div class="row">
 				<div th:each="book : ${books}" class="col-md-3">
 					<div>
-						<a href="#">
+						<a th:href="@{'/books/' + ${book.id}}">
 							<span th:text="${book.title}"></span>
 						</a>
 						

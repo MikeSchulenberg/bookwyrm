@@ -51,6 +51,7 @@ public class BookController {
 		this.bookService = bookService;
 	}
 	
+	// TODO: update @return comment
 	/**
 	 * @return A list of objects representing all Books in the database.
 	 */	
@@ -63,22 +64,20 @@ public class BookController {
 		return "/books/all-books";
 	}
 
-	// TODO: delete code if unneeded
-//	/**
-//	 * @param bookID The primary key of a Book to search for in the database.
-//	 * @return An object representing the Book with a primary key that matches
-//	 * the `bookID`.
-//	 */
-//	@GetMapping("/books/{bookID}")
-//	public Book getBook(@PathVariable int bookID) {
-//		Book book = bookService.findByID(bookID);
-//		
-//		if (book == null) {
-//			throw new RuntimeException("Book ID not found: " + bookID);
-//		}
-//		
-//		return book;
-//	}
+	// TODO: update @return comment
+	/**
+	 * @param bookID The primary key of a Book to search for in the database.
+	 * @return An object representing the Book with a primary key that matches
+	 * the `bookID`.
+	 */
+	@GetMapping("/{bookID}")
+	public String getBook(@PathVariable int bookID, Model model) {
+		Book book = bookService.findByID(bookID);
+		
+		model.addAttribute("book", book);
+		
+		return "/books/book-detail";
+	}
 	
 	// TODO: rework method for MVC controller
 	/**
@@ -124,5 +123,7 @@ public class BookController {
 		
 		return "Deleted Book ID: " + bookID;
 	}
+	
+	// TODO: add findByGenre() method
 	
 }

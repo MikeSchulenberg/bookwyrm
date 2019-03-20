@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+
+</head>
+
+<body>
+	<div th:replace="fragments/sidebar :: sidebar"></div>
+	
+	<div class="container main">
+		<h1>
+			<span th:text="${book.title}"></span>
+		</h1>
+		
+		<br>
+		
+		<div class="container">
+			<div class="font-weight-bold">
+				Author
+			</div>
+			
+			<div th:each="author : ${book.author}">
+				<a th:href="@{'/authors/' + ${author.id}}">
+					<span th:text="${author.firstName}"></span>
+					<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
+					<span th:text="${author.lastName}"></span>
+				</a>
+			</div>
+
+			<div th:if="${book.seriesName != null && book.seriesNumber != null}">
+				<br>
+			
+				<div class="font-weight-bold">
+					Series
+				</div>
+				
+				<a href="#">
+					<span th:text="${book.seriesName + ' (' + book.seriesNumber + ')'}"></span>
+				</a>
+			</div>
+			
+			<br>
+
+			<div class="font-weight-bold">
+				Genre
+			</div>
+			
+			<a href="#">
+				<span th:text="${book.genre}"></span>
+			</a>		
+		</div>
+	</div>
+</body>
+</html>
