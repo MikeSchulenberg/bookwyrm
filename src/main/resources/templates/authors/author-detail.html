@@ -19,15 +19,17 @@
 		
 		<h3>Books</h3>
 		
-		<div class="row">
-			<div th:each="book : ${author.books}" class="col-md-3">
-				<div>
-					<a href="#">
-						<span th:text="${book.title}"></span>
-					</a>
+		<div class="container">
+			<div class="row">
+				<div th:each="book : ${author.books}" class="col-md-3">
+					<div>
+						<a href="#">
+							<span th:text="${book.title}"></span>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 	</div>
 </body>
 </html>
