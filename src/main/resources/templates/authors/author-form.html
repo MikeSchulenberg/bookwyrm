@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+
+</head>
+
+<body>
+	<div th:replace="fragments/sidebar :: sidebar"></div>
+	
+	<div class="container main">
+		<h1>Save Author</h1>
+		
+		<hr>
+		
+		<div class="container">		
+			<form th:action="@{/authors/save}" th:object="${author}" method="POST">
+				<!-- hidden form field to handle Updates -->
+				<input type="hidden" th:fiend="*{id}">
+				
+				<input type="text" th:field="*{firstName}"
+					   class="form-control mb-4 col-4" placeholder="First Name" required>
+					   
+				<input type="text" th:field="*{lastName}"
+					   class="form-control mb-4 col-4" placeholder="Last Name" required>
+					   
+				<input type="text" th:field="*{middleName}"
+					   class="form-control mb-4 col-4" placeholder="Middle Name">
+					   
+				<button type="submit" class="btn btn-info">Save</button>
+			</form>
+			
+			<hr>
+			
+			<a th:href="@{/authors/all}"></a>
+		</div>	
+	</div>
+</body>
+</html>

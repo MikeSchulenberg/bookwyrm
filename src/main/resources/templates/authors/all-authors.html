@@ -10,7 +10,13 @@
 	
 	<div class="container main">
 		<h1>Authors</h1>
-		
+	
+		<a class="btn btn-primary" th:href="@{/authors/add}" role="button">
+			Add Author
+		</a>
+	
+		<hr>
+	
 		<div class="container">
 			<div th:each="author : ${authors}">
 				<div>

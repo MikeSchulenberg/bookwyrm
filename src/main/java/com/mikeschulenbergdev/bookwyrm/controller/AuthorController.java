@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,7 +52,7 @@ public class AuthorController {
 		this.authorService = authorService;
 	}
 	
-	// TODO: update @return comment
+	// TODO: update comments
 	/**
 	 * @return A list of objects representing all Authors in the database.
 	 */	
@@ -64,7 +65,7 @@ public class AuthorController {
 		return "/authors/all-authors";
 	}
 
-	// TODO: update @return comment
+	// TODO: update comments
 	/**
 	 * @param authorID The primary key of an Author to search for in the database.
 	 * @return An object representing the Author with a primary key that matches
@@ -79,19 +80,18 @@ public class AuthorController {
 		return "/authors/author-detail";
 	}
 	
-	// TODO: rework method for MVC controller
+	// TODO: update comments
 	/**
 	 * @param author An new object representing the Author to be added to the database.
 	 * @return The Author just added to the database.
 	 */
-	@PostMapping("/authors")
-	public Author addAuthor(@RequestBody Author author) {
-		/* Force the database to save as a new author, rather than updating
-		 * an existing one, by setting its id to 0. */
-		author.setId(0);
-		authorService.save(author);
+	@GetMapping("/add")
+	public String showFormForAdd(Model model) {
+		Author author = new Author();
 		
-		return author;
+		model.addAttribute("author", author);
+		
+		return "/authors/author-form";
 	}
 	
 	// TODO: rework method for MVC controller
@@ -104,6 +104,17 @@ public class AuthorController {
 		authorService.save(author);
 		
 		return author;
+	}
+	
+	/**
+	 * @param author An object representing the Author to be saved in the database.
+	 * @return The web page to load after saving the Author.
+	 */
+	@PostMapping("/save")
+	public String saveAuthor(@ModelAttribute("author") Author author) {
+		authorService.save(author);
+		
+		return "redirect:/authors/all";
 	}
 	
 	// TODO: rework method for MVC controller
