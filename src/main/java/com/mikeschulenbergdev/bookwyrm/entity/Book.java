@@ -17,6 +17,7 @@
 
 package com.mikeschulenbergdev.bookwyrm.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -138,6 +139,14 @@ public class Book {
 
 	public void setAuthor(List<Author> author) {
 		this.author = author;
+	}
+	
+	public void addAuthor(Author author) {
+		if (this.author == null) {
+			this.author = new ArrayList<>();
+		}
+		
+		this.author.add(author);
 	}
 
 	@Override
