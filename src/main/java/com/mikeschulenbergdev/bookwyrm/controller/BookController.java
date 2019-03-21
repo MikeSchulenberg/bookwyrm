@@ -125,5 +125,6 @@ public class BookController {
 	}
 	
 	// TODO: add findByGenre() method
+	// TODO: add findBySeries() method
 	
 }
