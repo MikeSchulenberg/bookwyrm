@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+
+</head>
+
+<body>
+	<div th:replace="fragments/sidebar :: sidebar"></div>
+	
+	<div class="container main">
+		<h1>Save Book</h1>
+		
+		<hr>
+		
+		<div class="container">		
+			<form th:action="@{/books/save}" th:object="${book}" method="POST">
+				<!-- hidden form field to handle Updates -->
+				<input type="hidden" th:field="*{id}">
+				
+				Title:
+				<input type="text" th:field="*{title}"
+					   class="form-control mb-4 col-4" required>
+				
+				<!-- Add Author support here -->
+				
+				Genre:	   
+				<input type="text" th:field="*{genre}"
+					   class="form-control mb-4 col-4" required>
+				
+				Series:	   
+				<input type="text" th:field="*{seriesName}"
+					   class="form-control mb-4 col-4">
+					   
+				Number:	   
+				<input type="number" th:field="*{seriesNumber}"
+					   class="form-control mb-4 col-4" min="1">
+					   
+				<button type="submit" class="btn btn-info">Save</button>
+			</form>
+		</div>	
+	</div>
+</body>
+</html>

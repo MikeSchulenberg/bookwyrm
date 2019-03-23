@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,7 +52,7 @@ public class BookController {
 		this.bookService = bookService;
 	}
 	
-	// TODO: update @return comment
+	// TODO: update comments
 	/**
 	 * @return A list of objects representing all Books in the database.
 	 */	
@@ -64,7 +65,7 @@ public class BookController {
 		return "/books/all-books";
 	}
 
-	// TODO: update @return comment
+	// TODO: update comments
 	/**
 	 * @param bookID The primary key of a Book to search for in the database.
 	 * @return An object representing the Book with a primary key that matches
@@ -79,19 +80,18 @@ public class BookController {
 		return "/books/book-detail";
 	}
 	
-	// TODO: rework method for MVC controller
+	// TODO: update comments
 	/**
 	 * @param book An new object representing the Book to be added to the database.
 	 * @return The Book just added to the database.
 	 */
-	@PostMapping("/books")
-	public Book addBook(@RequestBody Book book) {
-		/* Force the database to save as a new book, rather than updating
-		 * an existing one, by setting its id to 0. */
-		book.setId(0);
-		bookService.save(book);
+	@GetMapping("/add")
+	public String showFormForAdd(Model model) {
+		Book book = new Book();
 		
-		return book;
+		model.addAttribute("book", book);
+		
+		return "/books/book-form";
 	}
 	
 	// TODO: rework method for MVC controller
@@ -104,6 +104,18 @@ public class BookController {
 		bookService.save(book);
 		
 		return book;
+	}
+	
+	/**
+	 * 
+	 * @param book An object representing the Book to be saved in the database.
+	 * @return The web page to load after saving the Book.
+	 */
+	@PostMapping("/save")
+	public String saveBook(@ModelAttribute("book") Book book) {
+		bookService.save(book);
+		
+		return "redirect:/books/all";
 	}
 	
 	// TODO: rework method for MVC controller
