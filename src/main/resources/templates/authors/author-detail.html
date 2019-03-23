@@ -15,7 +15,11 @@
 			<span th:text="${author.lastName}"></span>
 		</h1>
 		
-		<br>
+		<a class="btn btn-info" th:href="@{/authors/update(authorID=${author.id})}" role="button">
+			Update
+		</a>
+		
+		<hr>
 		
 		<h3>Books</h3>
 		

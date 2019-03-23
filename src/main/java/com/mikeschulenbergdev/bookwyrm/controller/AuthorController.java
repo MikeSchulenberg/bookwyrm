@@ -27,9 +27,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.service.AuthorService;
@@ -94,16 +93,20 @@ public class AuthorController {
 		return "/authors/author-form";
 	}
 	
-	// TODO: rework method for MVC controller
+	// TODO: update comments
 	/**
 	 * @param author An object representing the Author to be updated in the database.
 	 * @return The Author just updated in the database.
 	 */
-	@PutMapping("/authors")
-	public Author updateAuthor(@RequestBody Author author) {
-		authorService.save(author);
+	@GetMapping("/update")
+	public String showFormForUpdate(@RequestParam("authorID") int id, 
+									Model model) {
 		
-		return author;
+		Author author = authorService.findByID(id);
+		
+		model.addAttribute("author", author);
+		
+		return "/authors/author-form";
 	}
 	
 	/**
