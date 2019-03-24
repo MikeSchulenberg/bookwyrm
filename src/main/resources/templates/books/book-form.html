@@ -18,23 +18,27 @@
 				<!-- hidden form field to handle Updates -->
 				<input type="hidden" th:field="*{id}">
 				
-				Title:
+				<label for="title">Title</label>
 				<input type="text" th:field="*{title}"
-					   class="form-control mb-4 col-4" required>
+					   class="form-control mb-4 col-4" id="title" required>
 				
-				<!-- Add Author support here -->
+				<div>
+					<a class="btn btn-primary btn-sm mb-3" th:href="@{/authors/add}" role="button">
+						Add Author
+					</a>
+				</div>
 				
-				Genre:	   
+				<label for="genre">Genre</label>	   
 				<input type="text" th:field="*{genre}"
-					   class="form-control mb-4 col-4" required>
+					   class="form-control mb-4 col-4" id="genre" required>
 				
-				Series:	   
+				<label for="series">Series</label>   
 				<input type="text" th:field="*{seriesName}"
-					   class="form-control mb-4 col-4">
+					   class="form-control mb-4 col-4" id="series">
 					   
-				Number:	   
+				<label for="number">Number</label>	   
 				<input type="number" th:field="*{seriesNumber}"
-					   class="form-control mb-4 col-4" min="1">
+					   class="form-control mb-4 col-4" min="1" id="number">
 					   
 				<button type="submit" class="btn btn-info">Save</button>
 			</form>
