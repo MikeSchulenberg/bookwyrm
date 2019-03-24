@@ -13,7 +13,11 @@
 			<span th:text="${book.title}"></span>
 		</h1>
 		
-		<br>
+		<a class="btn btn-info" th:href="@{/books/update(bookID=${book.id})}" role="button">
+			Update
+		</a>
+		
+		<hr>
 		
 		<div class="container">
 			<div class="font-weight-bold">

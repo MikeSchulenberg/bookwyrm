@@ -27,9 +27,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 import com.mikeschulenbergdev.bookwyrm.service.BookService;
@@ -94,16 +93,20 @@ public class BookController {
 		return "/books/book-form";
 	}
 	
-	// TODO: rework method for MVC controller
+	// TODO: update comments
 	/**
 	 * @param book An object representing the Book to be updated in the database.
 	 * @return The Book just updated in the database.
 	 */
-	@PutMapping("/books")
-	public Book updateBook(@RequestBody Book book) {
-		bookService.save(book);
+	@GetMapping("/update")
+	public String showFormForUpdate(@RequestParam("bookID") int id,
+									Model model) {
 		
-		return book;
+		Book book = bookService.findByID(id);
+		
+		model.addAttribute("book", book);
+		
+		return "/books/book-form";
 	}
 	
 	/**
