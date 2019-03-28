@@ -18,14 +18,23 @@
 				<!-- hidden form field to handle Updates -->
 				<input type="hidden" th:field="*{id}">
 				
+				<label class="font-weight-bold" for="firstName">
+					First Name
+				</label>
 				<input type="text" th:field="*{firstName}"
-					   class="form-control mb-4 col-4" placeholder="First Name" required>
-					   
+					   class="form-control mb-4 col-4" id="firstName" required>
+				
+				<label class="font-weight-bold" for="lastName">
+					Last Name
+				</label>	   
 				<input type="text" th:field="*{lastName}"
-					   class="form-control mb-4 col-4" placeholder="Last Name" required>
-					   
+					   class="form-control mb-4 col-4" id="Last Name" required>
+				
+				<label class="font-weight-bold" for="middleName">
+					Middle Name or Initial
+				</label>	   
 				<input type="text" th:field="*{middleName}"
-					   class="form-control mb-4 col-4" placeholder="Middle Name">
+					   class="form-control mb-4 col-4" id="middleName" placeholder="optional">
 					   
 				<button type="submit" class="btn btn-info">Save</button>
 			</form>
