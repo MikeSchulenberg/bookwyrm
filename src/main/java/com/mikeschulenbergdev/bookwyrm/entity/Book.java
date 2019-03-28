@@ -20,10 +20,8 @@ package com.mikeschulenbergdev.bookwyrm.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,14 +61,7 @@ public class Book {
 	@Column(name="series_number")
 	private Integer seriesNumber;
 	
-	@ManyToMany(fetch=FetchType.LAZY,
-				cascade= {CascadeType.DETACH, CascadeType.MERGE,
-						  CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinTable(
-			name="book_author",
-			joinColumns=@JoinColumn(name="book_id"),
-			inverseJoinColumns=@JoinColumn(name="author_id")
-			)
+	@ManyToMany(mappedBy="books")	// reuse the relationship as defined by Author.java
 	@OrderBy("lastName")
 	@JsonIgnoreProperties("books")
 	private List<Author> author;
