@@ -22,7 +22,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -121,22 +120,16 @@ public class BookController {
 		return "redirect:/books/all";
 	}
 	
-	// TODO: rework method for MVC controller
+	// TODO: update comments
 	/**
 	 * @param bookID The primary key of a Book to delete from the database.
 	 * @return A String identifying the Book just deleted from the database
 	 */
-	@DeleteMapping("/books/{bookID}")
-	public String deleteBook(@PathVariable int bookID) {
-		Book book = bookService.findByID(bookID);
+	@GetMapping("/delete")
+	public String delete(@RequestParam("bookID") int id) {
+		bookService.deleteByID(id);
 		
-		if (book == null) {
-			throw new RuntimeException("Book ID not found: " + bookID);
-		}
-		
-		bookService.deleteByID(bookID);
-		
-		return "Deleted Book ID: " + bookID;
+		return "redirect:/books/all";
 	}
 	
 	// TODO: add findByGenre() method
