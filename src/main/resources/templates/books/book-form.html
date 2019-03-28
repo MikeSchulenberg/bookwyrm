@@ -18,19 +18,27 @@
 				<!-- hidden form field to handle Updates -->
 				<input type="hidden" th:field="*{id}">
 				
-				<label for="title">Title</label>
+				<label class="font-weight-bold" for="title">
+					Title
+				</label>
 				<input type="text" th:field="*{title}"
 					   class="form-control mb-4 col-4" id="title" required>
 				
-				<label for="genre">Genre</label>	   
+				<label class="font-weight-bold"for="genre">
+					Genre
+				</label>	   
 				<input type="text" th:field="*{genre}"
 					   class="form-control mb-4 col-4" id="genre" required>
 				
-				<label for="series">Series</label>   
+				<label class="font-weight-bold"for="series">
+					Series
+				</label>   
 				<input type="text" th:field="*{seriesName}"
 					   class="form-control mb-4 col-4" id="series">
 					   
-				<label for="number">Number</label>	   
+				<label class="font-weight-bold" for="number">
+					Number
+				</label>	   
 				<input type="number" th:field="*{seriesNumber}"
 					   class="form-control mb-4 col-4" min="1" id="number">
 					   
