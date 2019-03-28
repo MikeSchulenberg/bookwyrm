@@ -69,8 +69,7 @@ public class Author {
 			inverseJoinColumns=@JoinColumn(name="book_id")
 			)
 	@OrderBy("title")
-	@JsonIgnoreProperties("author")
-	private List<Book> books;
+	private List<Book> books = new ArrayList<>();
 	
 	public Author() {
 		
@@ -128,12 +127,14 @@ public class Author {
 		this.books = books;
 	}
 
-	public void addBook(Book book) {
-		if (books == null) {
-			books = new ArrayList<>();
-		}
-		
+	public void addBook(Book book) {		
 		books.add(book);
+		book.getAuthor().add(this);
+	}
+	
+	public void removeBook(Book book) {
+		books.remove(book);
+		book.getAuthor().remove(this);
 	}
 	
 	@Override
