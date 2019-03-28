@@ -22,7 +22,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -120,22 +119,16 @@ public class AuthorController {
 		return "redirect:/authors/all";
 	}
 	
-	// TODO: rework method for MVC controller
+	// TODO: update comments
 	/**
 	 * @param authorID The primary key of an Author to delete from the database.
 	 * @return A String identifying the Author just deleted from the database
 	 */
-	@DeleteMapping("/authors/{authorID}")
-	public String deleteAuthor(@PathVariable int authorID) {
-		Author author = authorService.findByID(authorID);
+	@GetMapping("/delete")
+	public String delete(@RequestParam("authorID") int id) {	
+		authorService.deleteByID(id);
 		
-		if (author == null) {
-			throw new RuntimeException("Author ID not found: " + authorID);
-		}
-		
-		authorService.deleteByID(authorID);
-		
-		return "Deleted Author ID: " + authorID;
+		return "redirect:/authors/all";
 	}
 	
 }
