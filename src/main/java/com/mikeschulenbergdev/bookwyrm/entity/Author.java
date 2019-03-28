@@ -129,12 +129,12 @@ public class Author {
 
 	public void addBook(Book book) {		
 		books.add(book);
-		book.getAuthor().add(this);
+		book.getAuthors().add(this);
 	}
 	
 	public void removeBook(Book book) {
 		books.remove(book);
-		book.getAuthor().remove(this);
+		book.getAuthors().remove(this);
 	}
 	
 	@Override

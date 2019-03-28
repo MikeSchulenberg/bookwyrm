@@ -28,7 +28,7 @@ public class BookwyrmTest {
 		
 		book1.removeAuthor(author2);
 		
-		for (Author author : book1.getAuthor()) {
+		for (Author author : book1.getAuthors()) {
 			System.out.println(author + " " + author.getBooks());
 		}
 		
@@ -36,7 +36,7 @@ public class BookwyrmTest {
 		
 		book2.removeAuthor(author4);
 		
-		for (Author author : book2.getAuthor()) {
+		for (Author author : book2.getAuthors()) {
 			System.out.println(author + " " + author.getBooks());
 		}
 	}

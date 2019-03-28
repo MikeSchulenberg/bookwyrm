@@ -25,10 +25,10 @@
 		
 		<div class="container">
 			<div class="font-weight-bold">
-				Author
+				Author(s)
 			</div>
 			
-			<div th:each="author : ${book.author}">
+			<div th:each="author : ${book.authors}">
 				<a th:href="@{'/authors/' + ${author.id}}">
 					<span th:text="${author.firstName}"></span>
 					<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>

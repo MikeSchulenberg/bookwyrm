@@ -63,7 +63,7 @@ public class Book {
 	
 	@ManyToMany(mappedBy="books")	// reuse the relationship as defined by Author.java
 	@OrderBy("lastName")
-	private List<Author> author = new ArrayList<>();
+	private List<Author> authors = new ArrayList<>();
 	
 	public Book() {
 		
@@ -123,21 +123,21 @@ public class Book {
 		this.seriesNumber = seriesNumber;
 	}
 	
-	public List<Author> getAuthor() {
-		return author;
+	public List<Author> getAuthors() {
+		return authors;
 	}
 
-	public void setAuthor(List<Author> author) {
-		this.author = author;
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 	
 	public void addAuthor(Author author) {
-		this.author.add(author);
+		authors.add(author);
 		author.getBooks().add(this);
 	}
 	
 	public void removeAuthor(Author author) {
-		this.author.remove(author);
+		authors.remove(author);
 		author.getBooks().remove(this);
 	}
 
