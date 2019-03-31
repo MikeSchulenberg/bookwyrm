@@ -18,7 +18,7 @@
 				<!-- hidden form field to handle Updates -->
 				<input type="hidden" th:field="*{id}">
 				
-				<th:block th:if="${book.isNew() == false}">
+				<th:block th:if="${!book['new']}">
 					<span class="font-weight-bold">
 						Author(s)
 					</span>
