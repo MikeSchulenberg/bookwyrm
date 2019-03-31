@@ -18,16 +18,18 @@
 				<!-- hidden form field to handle Updates -->
 				<input type="hidden" th:field="*{id}">
 				
-				<span class="font-weight-bold">
-					Author(s)
-				</span>
-				
-				<div>
-					<a class="btn btn-primary btn-sm mb-4 mt-2" th:href="@{#}"
-					   role="button">
-						Add Author
-					</a>
-				</div>
+				<th:block th:if="${book.isNew() == false}">
+					<span class="font-weight-bold">
+						Author(s)
+					</span>
+					
+					<div>
+						<a class="btn btn-primary btn-sm mb-4 mt-2" th:href="@{#}"
+						   role="button">
+							Add Author
+						</a>
+					</div>
+				</th:block>
 
 				<label class="font-weight-bold" for="title">
 					Title

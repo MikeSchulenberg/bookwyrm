@@ -131,6 +131,10 @@ public class Book {
 		this.authors = authors;
 	}
 	
+	public boolean isNew() {
+		return id == 0;
+	}
+	
 	public void addAuthor(Author author) {
 		authors.add(author);
 		author.getBooks().add(this);
