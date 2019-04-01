@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 import com.mikeschulenbergdev.bookwyrm.service.BookService;
 
@@ -130,6 +131,22 @@ public class BookController {
 		bookService.deleteByID(id);
 		
 		return "redirect:/books/all";
+	}
+	
+	// TODO: write comment
+	@PostMapping("/add-author")
+	public String showAuthorFormForAdd(@ModelAttribute("book") Book book,
+									   Model model) {
+		bookService.save(book);
+		
+		Author author = new Author();
+		
+		model.addAttribute("book", book);
+		model.addAttribute("author", author);
+		
+		System.out.println(">>> @PostMapping - /add-author - " + book.toString());		// debug
+		
+		return "/authors/author-form";
 	}
 	
 	// TODO: add findByGenre() method

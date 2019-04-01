@@ -14,7 +14,8 @@
 		<hr>
 		
 		<div class="container">		
-			<form th:action="@{/books/save}" th:object="${book}" method="POST">
+			<form th:with="action=${book['new']} ? '/books/add-author' : '/books/save'"
+				  th:action="@{${action}}" th:object="${book}" method="POST">
 				<!-- hidden form field to handle Updates -->
 				<input type="hidden" th:field="*{id}">
 				
