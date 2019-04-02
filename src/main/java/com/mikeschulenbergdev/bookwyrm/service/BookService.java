@@ -19,6 +19,7 @@ package com.mikeschulenbergdev.bookwyrm.service;
 
 import java.util.List;
 
+import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
@@ -52,4 +53,6 @@ public interface BookService {
 	 */	
 	public void deleteByID(int id);
 	
+	// TODO: write comment
+	public Book saveAuthorToBook(Book book, Author author);
 }

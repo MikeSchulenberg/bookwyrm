@@ -135,18 +135,44 @@ public class BookController {
 	
 	// TODO: write comment
 	@PostMapping("/add-author")
-	public String showAuthorFormForAdd(@ModelAttribute("book") Book book,
+	public String showAuthorFormForAdd(@ModelAttribute Book book,
 									   Model model) {
+		
 		bookService.save(book);
 		
 		Author author = new Author();
 		
-		model.addAttribute("book", book);
 		model.addAttribute("author", author);
+//		model.addAttribute("book", book);
+//		model.addAttribute("action", "/books/' + ${book.id} + '/save-author");
+		model.addAttribute("action", "/books/" + book.getId() + "/save-author");
 		
+		
+//		String temp = "@{'/books/' + ${book.id}}";
 		System.out.println(">>> @PostMapping - /add-author - " + book.toString());		// debug
 		
 		return "/authors/author-form";
+	}
+	
+	// TODO: write comment
+	@PostMapping("/{bookID}/save-author")
+	public String saveAuthorToBook(@PathVariable("bookID") int bookID,
+								   @ModelAttribute Author author,
+								   Model model) {
+		
+		Book book = bookService.findByID(bookID);
+		book = bookService.saveAuthorToBook(book, author);
+
+		model.addAttribute("book", book);
+		
+		
+		
+		System.out.println(">>> @PostMapping - /save-author - " + book.toString());		// debug
+//		System.out.println(">>> @PostMapping - /save-author - " + author.toString());		// debug
+		System.out.println(">>> @PostMapping - /save-author - " + book.getAuthors());		// debug
+		
+//		return "/books/book-form";
+		return "redirect:/books/update?bookID=" + book.getId();
 	}
 	
 	// TODO: add findByGenre() method

@@ -14,7 +14,7 @@
 		<hr>
 		
 		<div class="container">		
-			<form th:action="@{/authors/save}" th:object="${author}" method="POST">
+			<form th:action="@{${action}}" th:object="${author}" method="POST">
 				<th:block th:replace="fragments/author-form-contents :: contents"></th:block>
 			</form>
 		</div>	

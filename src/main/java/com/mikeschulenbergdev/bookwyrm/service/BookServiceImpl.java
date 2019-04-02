@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mikeschulenbergdev.bookwyrm.dao.BookDAO;
+import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
@@ -68,4 +69,16 @@ public class BookServiceImpl implements BookService {
 		bookDAO.deleteByID(id);
 	}
 
+	@Override
+	public Book saveAuthorToBook(Book book, Author author) {
+		book.addAuthor(author);
+		
+		save(book);
+		
+		System.out.println(">>> BookService.saveAuthorToBook() - " + book.getAuthors());
+		System.out.println(">>> BookService.saveAuthorToBook() - " + author.getBooks());
+
+		return book;
+	}
+	
 }
