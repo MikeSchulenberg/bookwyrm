@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mikeschulenbergdev.bookwyrm.dao.AuthorDAO;
 import com.mikeschulenbergdev.bookwyrm.dao.BookDAO;
 import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
@@ -38,10 +39,12 @@ import com.mikeschulenbergdev.bookwyrm.entity.Book;
 @Service
 public class BookServiceImpl implements BookService {
 
+	private AuthorDAO authorDAO;
 	private BookDAO bookDAO;
 	
 	@Autowired
-	public BookServiceImpl(BookDAO bookDAO) {
+	public BookServiceImpl(AuthorDAO authorDAO, BookDAO bookDAO) {
+		this.authorDAO = authorDAO;
 		this.bookDAO = bookDAO;
 	}
 
@@ -70,11 +73,15 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public Book saveAuthorToBook(Book book, Author author) {
 		book.addAuthor(author);
 		
-		save(book);
+//		save(book);
 		
+		authorDAO.save(author);
+		
+		// debug	
 		System.out.println(">>> BookService.saveAuthorToBook() - " + book.getAuthors());
 		System.out.println(">>> BookService.saveAuthorToBook() - " + author.getBooks());
 
