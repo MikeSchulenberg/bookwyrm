@@ -74,18 +74,10 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
-	public Book saveAuthorToBook(Book book, Author author) {
+	public void saveAuthorToBook(Book book, Author author) {
 		book.addAuthor(author);
 		
-//		save(book);
-		
 		authorDAO.save(author);
-		
-		// debug	
-		System.out.println(">>> BookService.saveAuthorToBook() - " + book.getAuthors());
-		System.out.println(">>> BookService.saveAuthorToBook() - " + author.getBooks());
-
-		return book;
 	}
 	
 }

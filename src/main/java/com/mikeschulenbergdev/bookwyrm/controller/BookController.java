@@ -143,13 +143,7 @@ public class BookController {
 		Author author = new Author();
 		
 		model.addAttribute("author", author);
-//		model.addAttribute("book", book);
-//		model.addAttribute("action", "/books/' + ${book.id} + '/save-author");
 		model.addAttribute("action", "/books/" + book.getId() + "/save-author");
-		
-		
-//		String temp = "@{'/books/' + ${book.id}}";
-		System.out.println(">>> @PostMapping - /add-author - " + book.toString());		// debug
 		
 		return "/authors/author-form";
 	}
@@ -161,17 +155,10 @@ public class BookController {
 								   Model model) {
 		
 		Book book = bookService.findByID(bookID);
-		book = bookService.saveAuthorToBook(book, author);
+		bookService.saveAuthorToBook(book, author);
 
 		model.addAttribute("book", book);
 		
-		
-		
-		System.out.println(">>> @PostMapping - /save-author - " + book.toString());		// debug
-//		System.out.println(">>> @PostMapping - /save-author - " + author.toString());		// debug
-		System.out.println(">>> @PostMapping - /save-author - " + book.getAuthors());		// debug
-		
-//		return "/books/book-form";
 		return "redirect:/books/update?bookID=" + book.getId();
 	}
 	

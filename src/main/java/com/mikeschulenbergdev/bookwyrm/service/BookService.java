@@ -54,5 +54,5 @@ public interface BookService {
 	public void deleteByID(int id);
 	
 	// TODO: write comment
-	public Book saveAuthorToBook(Book book, Author author);
+	public void saveAuthorToBook(Book book, Author author);
 }
