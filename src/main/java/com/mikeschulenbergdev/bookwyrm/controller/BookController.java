@@ -116,9 +116,17 @@ public class BookController {
 	 */
 	@PostMapping("/save")
 	public String saveBook(@ModelAttribute("book") Book book) {
+		boolean isNew = book.isNew();
+		
 		bookService.save(book);
 		
-		return "redirect:/books/all";
+		if (isNew) {
+			return "redirect:/books/" + book.getId() + "/add-author";
+		}
+		
+		else {
+			return "redirect:/books/all";
+		}	
 	}
 	
 	// TODO: update comments
@@ -134,22 +142,20 @@ public class BookController {
 	}
 	
 	// TODO: write comment
-	@PostMapping("/add-author")
-	public String showAuthorFormForAdd(@ModelAttribute Book book,
-									   Model model) {
-		
-		bookService.save(book);
+	@GetMapping("/{bookID}/add-author")
+	public String showAddAuthorForm(@PathVariable("bookID") int bookID,
+									Model model) {
 		
 		Author author = new Author();
 		
 		model.addAttribute("author", author);
-		model.addAttribute("action", "/books/" + book.getId() + "/save-author");
+		model.addAttribute("action", "/books/" + bookID + "/add-author");
 		
 		return "/authors/author-form";
 	}
 	
 	// TODO: write comment
-	@PostMapping("/{bookID}/save-author")
+	@PostMapping("/{bookID}/add-author")
 	public String saveAuthorToBook(@PathVariable("bookID") int bookID,
 								   @ModelAttribute Author author,
 								   Model model) {
