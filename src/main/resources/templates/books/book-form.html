@@ -13,24 +13,42 @@
 		
 		<hr>
 		
-		<div class="container">		
-			<form th:with="action=${book['new']} ? '/books/add-author' : '/books/save'"
-				  th:action="@{${action}}" th:object="${book}" method="POST">
-				<!-- hidden form field to handle Updates -->
-				<input type="hidden" th:field="*{id}">
-				
-				<th:block th:if="${!book['new']}">
+		<div class="container">
+			<form th:action="@{/books/add-author}" th:object="${book}" method="POST">
+				<th:block th:if="${!book['new']}">			
+					<input type="hidden" th:field="*{id}">
+					<input type="hidden" th:field="*{title}">
+					<input type="hidden" th:field="*{genre}">
+					<input type="hidden" th:field="*{seriesName}">
+					<input type="hidden" th:field="*{seriesNumber}">
+					
 					<span class="font-weight-bold">
 						Author(s)
 					</span>
 					
-					<div>
-						<a class="btn btn-primary btn-sm mb-4 mt-2" th:href="@{#}"
-						   role="button">
-							Add Author
+					<div th:each="author : ${book.authors}">
+						<a th:href="@{'/authors/' + ${author.id}}">
+							<span th:text="${author.firstName}"></span>
+							<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
+							<span th:text="${author.lastName}"></span>
 						</a>
 					</div>
+					
+					<button type="submit" class="btn btn-primary btn-sm mb-4 mt-2">Add Author</button>
+					
+<!-- 					<div> -->
+<!-- 						<a class="btn btn-primary btn-sm mb-4 mt-2" th:href="@{/books/add-author}" -->
+<!-- 						   role="button"> -->
+<!-- 							Add Author -->
+<!-- 						</a> -->
+<!-- 					</div> -->
 				</th:block>
+			</form>
+				
+			<form th:with="action=${book['new']} ? '/books/add-author' : '/books/save'"
+				  th:action="@{${action}}" th:object="${book}" method="POST">
+				<!-- hidden form field to handle Updates -->
+				<input type="hidden" th:field="*{id}">
 
 				<label class="font-weight-bold" for="title">
 					Title
