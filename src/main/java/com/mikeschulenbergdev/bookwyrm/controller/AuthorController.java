@@ -88,6 +88,7 @@ public class AuthorController {
 		Author author = new Author();
 		
 		model.addAttribute("author", author);
+		model.addAttribute("action", "/authors/save");
 		
 		return "/authors/author-form";
 	}
