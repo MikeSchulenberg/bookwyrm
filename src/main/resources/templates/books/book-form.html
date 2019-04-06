@@ -20,13 +20,7 @@
 						Author(s)
 					</span>
 					
-					<div th:each="author : ${book.authors}">
-						<a th:href="@{'/authors/' + ${author.id}}">
-							<span th:text="${author.firstName}"></span>
-							<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
-							<span th:text="${author.lastName}"></span>
-						</a>
-					</div>
+					<div th:replace="fragments/author-list :: first-name-first"></div>
 					
 					<div>
 						<a class="btn btn-primary btn-sm mb-4 mt-2" 

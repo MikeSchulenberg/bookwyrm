@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	
+</head>
+
+<body>
+	<div th:fragment="first-name-first" th:each="author : ${book.authors}">
+		<a th:href="@{'/authors/' + ${author.id}}">
+			<span th:text="${author.firstName}"></span>
+			<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
+			<span th:text="${author.lastName}"></span>
+		</a>
+	</div>
+</body>
+</html>
