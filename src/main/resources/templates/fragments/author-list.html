@@ -13,5 +13,12 @@
 			<span th:text="${author.lastName}"></span>
 		</a>
 	</div>
+	
+	<div th:fragment="last-name-first" th:each="author : ${authors}">			
+		<a th:href="@{'/authors/' + ${author.id}}">
+			<span th:text="${author.lastName + ', ' + author.firstName}"></span>
+			<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
+		</a>			
+	</div>
 </body>
 </html>

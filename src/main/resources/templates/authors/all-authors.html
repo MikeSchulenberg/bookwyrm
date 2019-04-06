@@ -18,12 +18,7 @@
 		<hr>
 	
 		<div class="container">
-			<div th:each="author : ${authors}">			
-				<a th:href="@{'/authors/' + ${author.id}}">
-					<span th:text="${author.lastName + ', ' + author.firstName}"></span>
-					<span th:if="${author.middleName != null}" th:text="${author.middleName}"></span>
-				</a>			
-			</div>
+			<div th:replace="fragments/author-list :: last-name-first"></div>
 		</div>
 	</div>
 </body>
