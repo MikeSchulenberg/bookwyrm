@@ -49,11 +49,11 @@ public class AuthorController {
 	public AuthorController(AuthorService authorService) {
 		this.authorService = authorService;
 	}
-	
-	// TODO: update comments
+
 	/**
-	 * @return A list of objects representing all Authors in the database.
-	 */	
+	 * @param model The object carrying the application's data.
+	 * @return A view listing all Authors in the database.
+	 */
 	@GetMapping("/all")
 	public String findAll(Model model) {
 		List<Author> authors = authorService.findAll();
@@ -62,12 +62,11 @@ public class AuthorController {
 		
 		return "/authors/all-authors";
 	}
-
-	// TODO: update comments
+	
 	/**
 	 * @param authorID The primary key of an Author to search for in the database.
-	 * @return An object representing the Author with a primary key that matches
-	 * the `authorID`.
+	 * @param model The object carrying the application's data.
+	 * @return A view showing the details of a single Author.
 	 */
 	@GetMapping("/{authorID}")
 	public String getAuthor(@PathVariable int authorID, Model model) {
@@ -78,10 +77,9 @@ public class AuthorController {
 		return "/authors/author-detail";
 	}
 	
-	// TODO: update comments
 	/**
-	 * @param author An new object representing the Author to be added to the database.
-	 * @return The Author just added to the database.
+	 * @param model The object carrying the application's data.
+	 * @return A form for adding an Author to the database.
 	 */
 	@GetMapping("/add")
 	public String showFormForAdd(Model model) {
@@ -93,16 +91,16 @@ public class AuthorController {
 		return "/authors/author-form";
 	}
 	
-	// TODO: update comments
 	/**
-	 * @param author An object representing the Author to be updated in the database.
-	 * @return The Author just updated in the database.
+	 * @param authorID The primary key of an Author to update in the database.
+	 * @param model The object carrying the application's data.
+	 * @return A form for updating an Author.
 	 */
 	@GetMapping("/update")
-	public String showFormForUpdate(@RequestParam("authorID") int id, 
+	public String showFormForUpdate(@RequestParam("authorID") int authorID, 
 									Model model) {
 		
-		Author author = authorService.findByID(id);
+		Author author = authorService.findByID(authorID);
 		
 		model.addAttribute("author", author);
 		
@@ -110,8 +108,8 @@ public class AuthorController {
 	}
 	
 	/**
-	 * @param author An object representing the Author to be saved in the database.
-	 * @return The web page to load after saving the Author.
+	 * @param author An Author to be saved in the database.
+	 * @return The route that loads the view listing all Authors in the database.
 	 */
 	@PostMapping("/save")
 	public String saveAuthor(@ModelAttribute("author") Author author) {
@@ -120,14 +118,13 @@ public class AuthorController {
 		return "redirect:/authors/all";
 	}
 	
-	// TODO: update comments
 	/**
 	 * @param authorID The primary key of an Author to delete from the database.
-	 * @return A String identifying the Author just deleted from the database
+	 * @return The route that loads the view listing all Authors in the database.
 	 */
 	@GetMapping("/delete")
-	public String delete(@RequestParam("authorID") int id) {	
-		authorService.deleteByID(id);
+	public String delete(@RequestParam("authorID") int authorID) {	
+		authorService.deleteByID(authorID);
 		
 		return "redirect:/authors/all";
 	}

@@ -51,10 +51,11 @@ public class BookController {
 		this.bookService = bookService;
 	}
 	
-	// TODO: update comments
 	/**
-	 * @return A list of objects representing all Books in the database.
-	 */	
+	 * 
+	 * @param model The object carrying the application's data.
+	 * @return A view listing all Books in the database.
+	 */
 	@GetMapping("/all")
 	public String findAll(Model model) {	
 		List<Book> books = bookService.findAll();
@@ -64,11 +65,10 @@ public class BookController {
 		return "/books/all-books";
 	}
 
-	// TODO: update comments
 	/**
 	 * @param bookID The primary key of a Book to search for in the database.
-	 * @return An object representing the Book with a primary key that matches
-	 * the `bookID`.
+	 * @param model The object carrying the application's data.
+	 * @return A view showing the details of a single Book.
 	 */
 	@GetMapping("/{bookID}")
 	public String getBook(@PathVariable int bookID, Model model) {
@@ -79,10 +79,9 @@ public class BookController {
 		return "/books/book-detail";
 	}
 	
-	// TODO: update comments
 	/**
-	 * @param book An new object representing the Book to be added to the database.
-	 * @return The Book just added to the database.
+	 * @param model The object carrying the application's data.
+	 * @return A form for adding a Book to the database.
 	 */
 	@GetMapping("/add")
 	public String showFormForAdd(Model model) {
@@ -93,16 +92,16 @@ public class BookController {
 		return "/books/book-form";
 	}
 	
-	// TODO: update comments
 	/**
-	 * @param book An object representing the Book to be updated in the database.
-	 * @return The Book just updated in the database.
+	 * @param bookID The primary key of a Book to update in the database.
+	 * @param model The object carrying the application's data.
+	 * @return A form for updating a Book.
 	 */
 	@GetMapping("/update")
-	public String showFormForUpdate(@RequestParam("bookID") int id,
+	public String showFormForUpdate(@RequestParam("bookID") int bookID,
 									Model model) {
 		
-		Book book = bookService.findByID(id);
+		Book book = bookService.findByID(bookID);
 		
 		model.addAttribute("book", book);
 		
@@ -110,9 +109,10 @@ public class BookController {
 	}
 	
 	/**
-	 * 
-	 * @param book An object representing the Book to be saved in the database.
-	 * @return The web page to load after saving the Book.
+	 * @param book A Book to be saved in the database.
+	 * @return For new Books, the route that allows users to add an Author.
+	 * For existing books, the route that loads the view listing all Books
+	 * in the database.
 	 */
 	@PostMapping("/save")
 	public String saveBook(@ModelAttribute("book") Book book) {
@@ -129,19 +129,23 @@ public class BookController {
 		}	
 	}
 	
-	// TODO: update comments
 	/**
 	 * @param bookID The primary key of a Book to delete from the database.
-	 * @return A String identifying the Book just deleted from the database
+	 * @return The route that loads the view listing all Books in the database.
 	 */
 	@GetMapping("/delete")
-	public String delete(@RequestParam("bookID") int id) {
-		bookService.deleteByID(id);
+	public String delete(@RequestParam("bookID") int bookID) {
+		bookService.deleteByID(bookID);
 		
 		return "redirect:/books/all";
 	}
 	
-	// TODO: write comment
+	/**
+	 * @param bookID The primary key of a Book to which an Author should
+	 * be added.
+	 * @param model The object carrying the application's data.
+	 * @return A form for adding an Author to the database.
+	 */
 	@GetMapping("/{bookID}/add-author")
 	public String showAddAuthorForm(@PathVariable("bookID") int bookID,
 									Model model) {
@@ -154,7 +158,14 @@ public class BookController {
 		return "/authors/author-form";
 	}
 	
-	// TODO: write comment
+	/**
+	 * @param bookID The primary key of a Book to which an Author should
+	 * be added.
+	 * @param author The Author to add to the Book.
+	 * @param model The object carrying the application's data.
+	 * @return The route that loads the form for updating the Book further, 
+	 * either with additional Authors or the Book data itself.
+	 */
 	@PostMapping("/{bookID}/add-author")
 	public String saveAuthorToBook(@PathVariable("bookID") int bookID,
 								   @ModelAttribute Author author,
@@ -167,8 +178,5 @@ public class BookController {
 		
 		return "redirect:/books/update?bookID=" + book.getId();
 	}
-	
-	// TODO: add findByGenre() method
-	// TODO: add findBySeries() method
 	
 }

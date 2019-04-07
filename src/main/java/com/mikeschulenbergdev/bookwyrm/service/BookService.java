@@ -53,6 +53,9 @@ public interface BookService {
 	 */	
 	public void deleteByID(int id);
 	
-	// TODO: write comment
+	/**
+	 * @param book The Book to which an Author should be added.
+	 * @param author The Author to add to the Book.
+	 */
 	public void saveAuthorToBook(Book book, Author author);
 }
