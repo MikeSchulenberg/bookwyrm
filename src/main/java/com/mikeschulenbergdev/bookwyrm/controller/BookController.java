@@ -88,6 +88,7 @@ public class BookController {
 		Book book = new Book();
 		
 		model.addAttribute("book", book);
+		model.addAttribute("action", "/books/save");
 		
 		return "/books/book-form";
 	}
@@ -104,6 +105,7 @@ public class BookController {
 		Book book = bookService.findByID(bookID);
 		
 		model.addAttribute("book", book);
+		model.addAttribute("action", "/books/save");
 		
 		return "/books/book-form";
 	}
