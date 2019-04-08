@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 import com.mikeschulenbergdev.bookwyrm.service.BookService;
 
@@ -140,45 +139,6 @@ public class BookController {
 		bookService.deleteByID(bookID);
 		
 		return "redirect:/books/all";
-	}
-	
-	/**
-	 * @param bookID The primary key of a Book to which an Author should
-	 * be added.
-	 * @param model The object carrying the application's data.
-	 * @return A form for adding an Author to the database.
-	 */
-	@GetMapping("/{bookID}/add-author")
-	public String showAddAuthorForm(@PathVariable("bookID") int bookID,
-									Model model) {
-		
-		Author author = new Author();
-		
-		model.addAttribute("author", author);
-		model.addAttribute("action", "/books/" + bookID + "/add-author");
-		
-		return "/authors/author-form";
-	}
-	
-	/**
-	 * @param bookID The primary key of a Book to which an Author should
-	 * be added.
-	 * @param author The Author to add to the Book.
-	 * @param model The object carrying the application's data.
-	 * @return The route that loads the form for updating the Book further, 
-	 * either with additional Authors or the Book data itself.
-	 */
-	@PostMapping("/{bookID}/add-author")
-	public String saveAuthorToBook(@PathVariable("bookID") int bookID,
-								   @ModelAttribute Author author,
-								   Model model) {
-		
-		Book book = bookService.findByID(bookID);
-		bookService.saveAuthorToBook(book, author);
-
-		model.addAttribute("book", book);
-		
-		return "redirect:/books/update?bookID=" + book.getId();
 	}
 	
 }

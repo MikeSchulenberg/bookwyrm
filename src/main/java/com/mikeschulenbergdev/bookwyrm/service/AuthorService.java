@@ -20,7 +20,6 @@ package com.mikeschulenbergdev.bookwyrm.service;
 import java.util.List;
 
 import com.mikeschulenbergdev.bookwyrm.entity.Author;
-import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
  * Interface for a Service to handle interactions between the
@@ -53,10 +52,4 @@ public interface AuthorService {
 	 */	
 	public void deleteByID(int id);
 	
-	
-	/**
-	 * @param book The Book to an Author.
-	 * @param author The Author to add to the Book.
-	 */
-	public void saveBookToAuthor(Book book, Author author);
 }

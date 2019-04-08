@@ -25,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mikeschulenbergdev.bookwyrm.dao.AuthorDAO;
 import com.mikeschulenbergdev.bookwyrm.entity.Author;
-import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
  * Implementation for a Service to handle interactions between the
@@ -67,13 +66,6 @@ public class AuthorServiceImpl implements AuthorService {
 	@Transactional
 	public void deleteByID(int id) {
 		authorDAO.deleteByID(id);
-	}
-
-	@Override
-	@Transactional
-	public void saveBookToAuthor(Book book, Author author) {
-		author.addBook(book);
-		save(author);
 	}
 
 }

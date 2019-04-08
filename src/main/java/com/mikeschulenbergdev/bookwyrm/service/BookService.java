@@ -19,7 +19,6 @@ package com.mikeschulenbergdev.bookwyrm.service;
 
 import java.util.List;
 
-import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
@@ -52,10 +51,5 @@ public interface BookService {
 	 * @param id The primary key of the Book to delete from the database.
 	 */	
 	public void deleteByID(int id);
-	
-	/**
-	 * @param book The Book to add to an Author.
-	 * @param author The Author to add to the Book.
-	 */
-	public void saveAuthorToBook(Book book, Author author);
+
 }

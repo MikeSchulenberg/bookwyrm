@@ -17,55 +17,36 @@
 
 package com.mikeschulenbergdev.bookwyrm.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.mikeschulenbergdev.bookwyrm.dao.BookDAO;
+import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
- * Implementation for a Service to handle interactions between the
- * BookController and BookDAO classes.
+ * Interface for a Service to handle interactions between the
+ * AuthorBookController and AuthorDAO class.
  * 
  * @author Mike Schulenberg
  * @version 0.0.1-SNAPSHOT
  *
  */
-@Service
-public class BookServiceImpl implements BookService {
+public interface AuthorBookService {
 
-	private BookDAO bookDAO;
+	/**
+	 * @param id The primary key of an Author to search for in the database.
+	 * @return An object representing the Author matching the `id`.
+	 */	
+	public Author findAuthorByID(int id);
 	
-	@Autowired
-	public BookServiceImpl(BookDAO bookDAO) {
-		this.bookDAO = bookDAO;
-	}
-
-	@Override
-	@Transactional
-	public List<Book> findAll() {
-		return bookDAO.findAll();
-	}
-
-	@Override
-	@Transactional
-	public Book findByID(int id) {
-		return bookDAO.findByID(id);
-	}
-
-	@Override
-	@Transactional
-	public void save(Book book) {
-		bookDAO.save(book);
-	}
-
-	@Override
-	@Transactional
-	public void deleteByID(int id) {
-		bookDAO.deleteByID(id);
-	}
+	/**
+	 * @param id The primary key of a Book to search for in the database.
+	 * @return An object representing the Book matching the `id`.
+	 */	
+	public Book findBookByID(int id);
+	
+	/**
+	 * @param author An Author to be associated with a Book and saved 
+	 * in the database.
+	 * @param book A Book to be associated with an Author and saved.
+	 */
+	public void saveAuthorAndBook(Author author, Book book);
 	
 }

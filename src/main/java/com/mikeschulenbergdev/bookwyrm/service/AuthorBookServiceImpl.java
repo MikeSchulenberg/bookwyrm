@@ -17,55 +17,52 @@
 
 package com.mikeschulenbergdev.bookwyrm.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mikeschulenbergdev.bookwyrm.dao.AuthorDAO;
 import com.mikeschulenbergdev.bookwyrm.dao.BookDAO;
+import com.mikeschulenbergdev.bookwyrm.entity.Author;
 import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
  * Implementation for a Service to handle interactions between the
- * BookController and BookDAO classes.
+ * AuthorBookController and AuthorDAO/BookDAO classes.
  * 
  * @author Mike Schulenberg
  * @version 0.0.1-SNAPSHOT
  *
  */
 @Service
-public class BookServiceImpl implements BookService {
+public class AuthorBookServiceImpl implements AuthorBookService {
 
+	private AuthorDAO authorDAO;
 	private BookDAO bookDAO;
 	
 	@Autowired
-	public BookServiceImpl(BookDAO bookDAO) {
+	public AuthorBookServiceImpl(AuthorDAO authorDAO, BookDAO bookDAO) {
+		this.authorDAO = authorDAO;
 		this.bookDAO = bookDAO;
 	}
-
+	
 	@Override
 	@Transactional
-	public List<Book> findAll() {
-		return bookDAO.findAll();
-	}
-
-	@Override
-	@Transactional
-	public Book findByID(int id) {
-		return bookDAO.findByID(id);
-	}
-
-	@Override
-	@Transactional
-	public void save(Book book) {
-		bookDAO.save(book);
-	}
-
-	@Override
-	@Transactional
-	public void deleteByID(int id) {
-		bookDAO.deleteByID(id);
+	public Author findAuthorByID(int id) {
+		return authorDAO.findByID(id);
 	}
 	
+	@Override
+	@Transactional
+	public Book findBookByID(int id) {
+		return bookDAO.findByID(id);
+	}
+	
+	@Override
+	@Transactional
+	public void saveAuthorAndBook(Author author, Book book) {
+		author.addBook(book);
+		authorDAO.save(author);
+	}
+
 }
