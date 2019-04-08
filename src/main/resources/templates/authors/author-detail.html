@@ -27,6 +27,14 @@
 		
 		<h3>Books</h3>
 		
+		<div>
+			<a class="btn btn-primary btn-sm mb-4" 
+			   th:href="@{'/authors/' + ${author.id} + '/add-book'}"
+			   role="button">
+				Add Book
+			</a>
+		</div>
+		
 		<div class="container">
 			<div class="row">
 				<div th:each="book : ${author.books}" class="col-md-3">
