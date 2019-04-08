@@ -30,7 +30,7 @@ import com.mikeschulenbergdev.bookwyrm.entity.Book;
 
 /**
  * Implementation for a Service to handle interactions between the
- * BookRestController and BookDAO classes.
+ * BookController and BookDAO classes.
  * 
  * @author Mike Schulenberg
  * @version 0.0.1-SNAPSHOT
