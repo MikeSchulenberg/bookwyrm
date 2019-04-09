@@ -79,11 +79,8 @@ public class AuthorBookController {
 								   Model model) {
 		
 		Author author = authorBookService.findAuthorByID(authorID);
-		authorBookService.saveAuthorAndBook(author, book);
 		
-		model.addAttribute("book", book);
-		
-		return "redirect:/books/update?bookID=" + book.getId();
+		return saveAndRedirect(author, book, model);
 	}
 	
 	/**
@@ -118,6 +115,18 @@ public class AuthorBookController {
 								   Model model) {
 		
 		Book book = authorBookService.findBookByID(bookID);
+		
+		return saveAndRedirect(author, book, model);
+	}
+	
+	/**
+	 * @param author The Author to associate with a Book.
+	 * @param book The Book to associate with the Author.
+	 * @param model The object carrying the application's data.
+	 * @return The route that loads the form for updating the Book further, 
+	 * either with additional Authors or the Book data itself.
+	 */
+	private String saveAndRedirect(Author author, Book book, Model model) {
 		authorBookService.saveAuthorAndBook(author, book);
 
 		model.addAttribute("book", book);
